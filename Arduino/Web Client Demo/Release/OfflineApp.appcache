@@ -1,0 +1,23 @@
+CACHE MANIFEST
+
+CACHE:
+nsb/fastclick.js
+img/lux.jpg
+nsb/jquery.mobile.js
+img/lux.png
+nsb/jquery.mobile.css
+nsb/images/192.png
+img/luceoff.png
+nsb/hfunc.js
+nsb/jquery.js
+nsb/nsbstyle.css
+img/igro.png
+nsb/images/ajax-loader.gif
+nsb/images/LauncherIcon57.png
+nsb/iscroll.js
+img/termometro.png
+
+NETWORK:
+*
+
+# buildtime: 1427473337.54

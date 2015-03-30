@@ -1,0 +1,1033 @@
+﻿<!DOCTYPE HTML>
+<html manifest="OfflineApp.appcache">
+<head>
+<meta charset="utf-8">
+<title>YUCCA: data from Arduino</title>
+<meta name="generator" content="NSB/AppStudio 4.2.9.0$zkdb" />
+<meta name='date' content='2015-03-27 17:22:17.696126' />
+<meta name='version' content='2.0.0' />
+<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+<meta name='apple-mobile-web-app-capable' content='YES' />
+<meta name='mobile-web-app-capable' content='yes' />
+<meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
+<meta name='apple-mobile-web-app-title' content='' />
+<meta name='copyright' content='Copyright 2015 ABC Company' />
+<noscript><h1>JavaScript must be enabled!</h1></noscript>
+<link rel='apple-touch-icon' href='nsb/images/LauncherIcon57.png' />
+<!-- Startup images -->
+<!-- iOS 6 & 7 iPad (retina, portrait) -->
+<link href='splash/ios/1536x2008.png'
+      media='(device-width: 768px) and (device-height: 1024px)
+         and (orientation: portrait)
+         and (-webkit-device-pixel-ratio: 2)'
+      rel='apple-touch-startup-image'>
+<!-- iOS 6 & 7 iPad (retina, landscape) -->
+<link href='splash/ios/1496x2048.png'
+      media='(device-width: 768px) and (device-height: 1024px)
+         and (orientation: landscape)
+         and (-webkit-device-pixel-ratio: 2)'
+      rel='apple-touch-startup-image'>
+<!-- iOS 6 iPad (portrait) -->
+<link href='splash/ios/768x1004.png'
+      media='(device-width: 768px) and (device-height: 1024px)
+         and (orientation: portrait)
+         and (-webkit-device-pixel-ratio: 1)'
+      rel='apple-touch-startup-image'>
+<!-- iOS 6 iPad (landscape) -->
+<link href='splash/ios/748x1024.png'
+      media='(device-width: 768px) and (device-height: 1024px)
+         and (orientation: landscape)
+         and (-webkit-device-pixel-ratio: 1)'
+      rel='apple-touch-startup-image'>
+<!-- iOS 6 & 7 iPhone 5 -->
+<link href='splash/ios/640x1096.png'
+      media='(device-width: 320px) and (device-height: 568px)
+         and (-webkit-device-pixel-ratio: 2)'
+      rel='apple-touch-startup-image'>
+<!-- iOS 6 & 7 iPhone (retina) -->
+<link href='splash/ios/640x920.png'
+      media='(device-width: 320px) and (device-height: 480px)
+         and (-webkit-device-pixel-ratio: 2)'
+      rel='apple-touch-startup-image'>
+<!-- iOS 6 iPhone -->
+<link href='splash/ios/320x460.png'
+      media='(device-width: 320px) and (device-height: 480px)
+         and (-webkit-device-pixel-ratio: 1)'
+      rel='apple-touch-startup-image'>
+<!-- iPhone 6 Portrait -->
+<link href='splash/ios/750x1294.png'
+      media='(device-width: 375px) and (device-height: 667px)
+         and (-webkit-device-pixel-ratio: 2)'
+      rel='apple-touch-startup-image'>
+<!-- iPhone 6 Plus Portrait -->
+<link href='splash/ios/1242x2148.png'
+      media='(device-width: 414px) and (device-height: 736px)
+         and (orientation: portrait)
+         and (-webkit-device-pixel-ratio: 3)'
+      rel='apple-touch-startup-image'>
+<!-- iPhone 6 Plus Landscape -->
+<link href='splash/ios/2208x1182.png'
+      media='(device-width: 414px) and (device-height: 736px)
+         and (orientation: landscape)
+         and (-webkit-device-pixel-ratio: 3)'
+      rel='apple-touch-startup-image'>
+<link rel='icon' sizes='192x192' href='nsb/images/192.png' />
+<script src="nsb/jquery.js"></script>
+<script src="nsb/hfunc.js"></script>
+<link href="nsb/nsbstyle.css" rel="stylesheet">
+<script src="nsb/fastclick.js"></script>
+<script src="nsb/jquery.mobile.js"></script>
+<link href="nsb/jquery.mobile.css" rel="stylesheet">
+<script src="nsb/iscroll.js"></script>
+
+
+<script src='http://code.jquery.com/jquery-1.6.4.js'></script>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/jqplot/1.0.4/jquery.jqplot.min.css" />
+<script src="http://cdn.jsdelivr.net/jqplot/1.0.4/jquery.jqplot.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jqplot/1.0.4/plugins/jqplot.dateAxisRenderer.min.js"></script>
+<style type="text/css">
+#boxPub {position:absolute; margin:0px; left:5px; right:10px; top:77px; bottom:auto; height:1599px; width:399px;}
+#boxPriv {position:absolute; margin:0px; left:410px; right:10px; top:76px; bottom:auto; height:1600px; width:395px;}
+#lblTitolo {position:absolute; left:167px; right:auto; top:6px; bottom:auto; height:auto; width:476px;}
+#lblPub {position:absolute; left:22px; right:auto; top:81px; bottom:auto; height:auto; width:357px;}
+#lblPriv {position:absolute; left:424px; right:auto; top:80px; bottom:auto; height:auto; width:357px;}
+#lblUser {position:absolute; left:24px; right:auto; top:137px; bottom:auto; height:auto; width:48px;}
+#txtUser { text-align:left;  height:25px; }
+#txtUser_wrapper > div { position: absolute;  width:95px; left:73px; right:auto; top:132px; bottom:auto; height:25px;margin:0px;  }
+#lblPWD {position:absolute; left:180px; right:auto; top:137px; bottom:auto; height:auto; width:70px;}
+#txtPWD { text-align:left;  height:auto; }
+#txtPWD_wrapper > div { position: absolute;  width:110px; left:268px; right:auto; top:132px; bottom:auto; height:auto;margin:0px;  }
+#lblToken {position:absolute; left:424px; right:auto; top:136px; bottom:auto; height:auto; width:114px;}
+#txtToken { text-align:left;  height:auto; }
+#txtToken_wrapper > div { position: absolute;  width:244px; left:538px; right:auto; top:132px; bottom:auto; height:auto;margin:0px;  }
+#lblStream {position:absolute; left:23px; right:auto; top:170px; bottom:auto; height:auto; width:67px;}
+#lblStream2 {position:absolute; left:419px; right:auto; top:170px; bottom:auto; height:auto; width:67px;}
+#txtStream1 { text-align:left;  height:auto; }
+#txtStream1_wrapper > div { position: absolute;  width:297px; left:86px; right:auto; top:166px; bottom:auto; height:auto;margin:0px;  }
+#txtStream2 { text-align:left;  height:auto; }
+#txtStream2_wrapper > div { position: absolute;  width:297px; left:485px; right:auto; top:166px; bottom:auto; height:auto;margin:0px;  }
+#btnConnect {position:absolute; left:150px; right:auto; top:207px; bottom:auto; height:auto; width:100px;}
+#btnConnect2 {position:absolute; left:558px; right:auto; top:207px; bottom:auto; height:auto; width:100px;}
+#Line1 {position:absolute; margin:0px; left:10px; right:10px; top:252px; bottom:auto; height:1px; width:384px;}
+#Line2 {position:absolute; margin:0px; left:407px; right:10px; top:252px; bottom:auto; height:1px; width:384px;}
+#Termometro {position:absolute; left:22px; right:auto; top:286px; bottom:auto; height:113px; width:364px;}
+#lblTemperatura {position:absolute; left:25px; right:auto; top:263px; bottom:auto; height:auto; width:229px;}
+#lblTemperatura2 {position:absolute; left:420px; right:auto; top:263px; bottom:auto; height:auto; width:248px;}
+#Line3 {position:absolute; margin:0px; left:108px; right:10px; top:334px; bottom:auto; height:17px; width:217px;}
+#Termometro2 {position:absolute; left:419px; right:auto; top:288px; bottom:auto; height:113px; width:364px;}
+#Line4 {position:absolute; margin:0px; left:505px; right:10px; top:336px; bottom:auto; height:17px; width:217px;}
+#lTemp1 {position:absolute; margin:0px; left:108px; right:10px; top:334px; bottom:auto; height:17px; width:100px;}
+#Label1 {position:absolute; left:53px; right:auto; top:50px; bottom:auto; height:auto; width:164px;}
+#txtServer { text-align:left;  height:26px; }
+#txtServer_wrapper > div { position: absolute;  width:386px; left:212px; right:auto; top:45px; bottom:auto; height:26px;margin:0px;  }
+#lblButton {position:absolute; left:16px; right:auto; top:489px; bottom:auto; height:auto; width:128px;}
+#imgButton {position:absolute; left:36px; right:auto; top:531px; bottom:auto; height:80px; width:62px;}
+#imgIgro {position:absolute; left:170px; right:auto; top:478px; bottom:auto; height:108px; width:205px;}
+#lblIgro {position:absolute; left:209px; right:auto; top:514px; bottom:auto; height:auto; width:127px;}
+#imgLux {position:absolute; left:73px; right:auto; top:415px; bottom:auto; height:53px; width:313px;}
+#lLightT {position:absolute; left:21px; right:auto; top:418px; bottom:auto; height:auto; width:48px;}
+#lLum {position:absolute; margin:0px; left:85px; right:10px; top:421px; bottom:auto; height:31px; width:284px;}
+#lPerc {position:absolute; left:20px; right:auto; top:440px; bottom:auto; height:auto; width:46px;}
+#lblTS1 {position:absolute; left:212px; right:auto; top:263px; bottom:auto; height:auto; width:177px;}
+#lblTS2 {position:absolute; left:608px; right:auto; top:263px; bottom:auto; height:auto; width:177px;}
+#lTemp2 {position:absolute; margin:0px; left:505px; right:10px; top:336px; bottom:auto; height:17px; width:100px;}
+#imgIgroCopy {position:absolute; left:579px; right:auto; top:413px; bottom:auto; height:108px; width:205px;}
+#lblIgro2 {position:absolute; left:618px; right:auto; top:447px; bottom:auto; height:auto; width:127px;}
+#imgLux2 {position:absolute; left:419px; right:auto; top:442px; bottom:auto; height:181px; width:149px;}
+#lblLux {position:absolute; left:447px; right:auto; top:500px; bottom:auto; height:26px; width:89px;}
+#lblMessage {position:absolute; left:573px; right:auto; top:570px; bottom:auto; height:51px; width:219px;}
+#FlipToggle1 {position:absolute; left:713px; right:auto; top:15px; bottom:auto; height:auto; width:auto;}
+#btnOAuth1 {position:absolute; left:298px; right:auto; top:633px; bottom:auto; height:auto; width:100px;}
+#chart1_scroller {position: absolute; overflow:hidden;  width:381px; height:300px; left:13px; top:675px;;}
+#chart1 {position:absolute; left:0px; top:0px;  height:300px; width:381px;}
+#chart2_scroller {position: absolute; overflow:hidden;  width:381px; height:300px; left:14px; top:1000px;;}
+#chart2 {position:absolute; left:0px; top:0px;  height:300px; width:381px;}
+#chart3_scroller {position: absolute; overflow:hidden;  width:381px; height:300px; left:13px; top:1325px;;}
+#chart3 {position:absolute; left:0px; top:0px;  height:300px; width:381px;}
+#chart1o_scroller {position: absolute; overflow:hidden;  width:381px; height:300px; left:415px; top:675px;;}
+#chart1o {position:absolute; left:0px; top:0px;  height:300px; width:381px;}
+#chart2o_scroller {position: absolute; overflow:hidden;  width:381px; height:300px; left:415px; top:1000px;;}
+#chart2o {position:absolute; left:0px; top:0px;  height:300px; width:381px;}
+#chart3o_scroller {position: absolute; overflow:hidden;  width:381px; height:300px; left:415px; top:1325px;;}
+#chart3o {position:absolute; left:0px; top:0px;  height:300px; width:381px;}
+#btnOAuth2 {position:absolute; left:698px; right:auto; top:635px; bottom:auto; height:auto; width:100px;}
+#Line1b {position:absolute; margin:0px; left:10px; right:10px; top:630px; bottom:auto; height:1px; width:384px;}
+#Line2b {position:absolute; margin:0px; left:415px; right:10px; top:630px; bottom:auto; height:1px; width:384px;}
+#Label2 {position:absolute; left:19px; right:auto; top:646px; bottom:auto; height:auto; width:142px;}
+#Label2Copy {position:absolute; left:429px; right:auto; top:646px; bottom:auto; height:auto; width:142px;}
+#Label3 {position:absolute; left:419px; right:auto; top:421px; bottom:auto; height:auto; width:70px;}
+#lineHide {position:absolute; margin:0px; left:409px; right:10px; top:76px; bottom:auto; height:1609px; width:401px;}
+body * {font-family:helvetica}
+</style>
+</head>
+<body style="margin:0px;-ms-touch-action:none;">
+<script>window.addEventListener('load', function() {new FastClick.attach(document.body)}, false)</script>
+<div data-role="page" id="Page_jqm" data-theme="a" style="">
+
+<form id="frmHome" action="" method="GET" onsubmit="return false;" style="display:none; height:100%; position:absolute; top:0px; left:0px; width:100%; ">
+<script>
+frmHome.innerHTML=[  "<hr id='boxPub' class='' style='background-color:#FBFFD3;border-style:solid;border-color:black;border-width:1px;' >",
+  "<hr id='boxPriv' class='' style='background-color:#D0FFCE;border-style:solid;border-color:gray;border-width:1px;' >",
+  "<div id='lblTitolo' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:30px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >YUCCA - data from Arduino YUN</div>",
+  "<div id='lblPub' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Raw data configured as public stream. \u000ABasic Authentication with user and password</div>",
+  "<div id='lblPriv' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Internal stream configured as private stream. Oauth 2.0 token required</div>",
+  "<div id='lblUser' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >User:</div>",
+  "<div id='txtUser_wrapper'><input id='txtUser' type='text' name='' autocorrect='on' autocomplete='on' autocapitalize='on' step=any value='guest' placeholder='Inserisci il testo qui' data-nsb-type='TextBox_jqm'  class='ui-mini ui-btn-  ' ></div>",
+  "<div id='lblPWD' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Password:</div>",
+  "<div id='txtPWD_wrapper'><input id='txtPWD' type='text' name='' autocorrect='on' autocomplete='on' autocapitalize='on' step=any value='Aekieh6F' placeholder='Inserisci il testo qui' data-nsb-type='TextBox_jqm'  class='ui-mini ui-btn-  ' ></div>",
+  "<div id='lblToken' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Oauth Token:</div>",
+  "<div id='txtToken_wrapper'><input id='txtToken' type='text' name='' autocorrect='on' autocomplete='on' autocapitalize='on' step=any value='XGwU5SO1AV4kneNtZsNvGH6Qxh0a' placeholder='Inserisci il testo qui' data-nsb-type='TextBox_jqm'  class='ui-mini ui-btn-  ' ></div>",
+  "<div id='lblStream' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Stream:</div>",
+  "<div id='lblStream2' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Stream:</div>",
+  "<div id='txtStream1_wrapper'><input id='txtStream1' type='text' name='' autocorrect='on' autocomplete='on' autocapitalize='on' step=any value='/topic/output.smartlab.922c0438-9dfd-4ce2-fd3c-b17960b189cb_environment' placeholder='Inserisci il testo qui' data-nsb-type='TextBox_jqm'  class='ui-mini ui-btn-  ' ></div>",
+  "<div id='txtStream2_wrapper'><input id='txtStream2' type='text' name='' autocorrect='on' autocomplete='on' autocapitalize='on' step=any value='/topic/output.smartlab.internal_environcorrect' placeholder='Inserisci il testo qui' data-nsb-type='TextBox_jqm'  class='ui-mini ui-btn-  ' ></div>",
+  "<button id='btnConnect' class='ui-btn ui-mini  ui-btn-inline ui-icon- ui-btn-icon-none  ' style='margin:0px; overflow:visible;   ' data-nsb-type=Button_jqm>Connect</button>",
+  "<button id='btnConnect2' class='ui-btn ui-mini  ui-btn-inline ui-icon- ui-btn-icon-none  ' style='margin:0px; overflow:visible;   ' data-nsb-type=Button_jqm>Connect</button>",
+  "<hr id='Line1' class='' style='background-color:grigio;border-style:solid;border-color:gray;border-width:1px;' >",
+  "<hr id='Line2' class='' style='background-color:grigio;border-style:solid;border-color:gray;border-width:1px;' >",
+  "<div id='Termometro' data-nsb-type=image><img src='img/termometro.png'  height=100% width=100% name='Termometro_img' style='' usemap='Termometro_map'></div>",
+  "<div id='lblTemperatura' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Temperature</div>",
+  "<div id='lblTemperatura2' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Temperature</div>",
+  "<hr id='Line3' class='' style='background-color:#E5E4BE;border-style:solid;border-color:gray;border-width:0px;' >",
+  "<div id='Termometro2' data-nsb-type=image><img src='img/termometro.png'  height=100% width=100% name='Termometro2_img' style='' usemap='Termometro2_map'></div>",
+  "<hr id='Line4' class='' style='background-color:#E5E4BE;border-style:solid;border-color:gray;border-width:0px;' >",
+  "<hr id='lTemp1' class='' style='background-color:#E55F4A;border-style:solid;border-color:#E55F4A;border-width:0px;' >",
+  "<div id='Label1' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >URL Server Stream</div>",
+  "<div id='txtServer_wrapper'><input id='txtServer' type='text' name='' autocorrect='on' autocomplete='on' autocapitalize='on' step=any value='ws://stream.smartdatanet.it/ws' placeholder='Inserisci il testo qui' data-nsb-type='TextBox_jqm'  class='ui-mini ui-btn-  ' ></div>",
+  "<div id='lblButton' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Mainenance Mode</div>",
+  "<div id='imgButton' data-nsb-type=image><img src='img/luceoff.png'  height=100% width=100% name='imgButton_img' style='' usemap='imgButton_map'></div>",
+  "<div id='imgIgro' data-nsb-type=image><img src='img/igro.png'  height=100% width=100% name='imgIgro_img' style='' usemap='imgIgro_map'></div>",
+  "<div id='lblIgro' class='' data-nsb-type=Label style='text-align:center; text-shadow:none; font-size:32px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >0 %</div>",
+  "<div id='imgLux' data-nsb-type=image><img src='img/lux.jpg'  height=100% width=100% name='imgLux_img' style='' usemap='imgLux_map'></div>",
+  "<div id='lLightT' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Light</div>",
+  "<hr id='lLum' class='' style='background-color:black;border-style:solid;border-color:gray;border-width:0px;' >",
+  "<div id='lPerc' class='' data-nsb-type=Label style='text-align:center; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >0</div>",
+  "<div id='lblTS1' class='' data-nsb-type=Label style='text-align:right; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >time</div>",
+  "<div id='lblTS2' class='' data-nsb-type=Label style='text-align:right; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >time</div>",
+  "<hr id='lTemp2' class='' style='background-color:#E55F4A;border-style:solid;border-color:#E55F4A;border-width:0px;' >",
+  "<div id='imgIgroCopy' data-nsb-type=image><img src='img/igro.png'  height=100% width=100% name='imgIgroCopy_img' style='' usemap='imgIgroCopy_map'></div>",
+  "<div id='lblIgro2' class='' data-nsb-type=Label style='text-align:center; text-shadow:none; font-size:32px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >0 %</div>",
+  "<div id='imgLux2' data-nsb-type=image><img src='img/lux.png'  height=100% width=100% name='imgLux2_img' style='' usemap='imgLux2_map'></div>",
+  "<div id='lblLux' class='' data-nsb-type=Label style='text-align:center; text-shadow:none; font-size:24px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >0 %</div>",
+  "<div id='lblMessage' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >LUX% evaluated by platform\u000A\u000Abutton pressed = NO DATA</div>",
+  "<div id='FlipToggle1' style=''><select id='FlipToggle1_inner' name='FlipToggle1' data-role=flipswitch data-mini=true data-corners='false' style='' class=' '><option>Off</option><option>On</option></select></div>",
+  "<button id='btnOAuth1' class='ui-btn ui-mini  ui-btn-inline ui-icon- ui-btn-icon-none  ' style='margin:0px; overflow:visible;   ' data-nsb-type=Button_jqm>Get Data</button>",
+  "<div id='chart1_scroller' class=''   style='font-size:13px; font-family:helvetica; font-style:normal; font-weight:normal; color:black; border-style:groove;' name=''><div id='chart1' style='overflow:auto; background-color:white; height:auto; min- width:381px;;'></div></div>",
+  "<div id='chart2_scroller' class=''   style='font-size:13px; font-family:helvetica; font-style:normal; font-weight:normal; color:black; border-style:groove;' name=''><div id='chart2' style='overflow:auto; background-color:white; height:auto; min- width:381px;;'></div></div>",
+  "<div id='chart3_scroller' class=''   style='font-size:13px; font-family:helvetica; font-style:normal; font-weight:normal; color:black; border-style:groove;' name=''><div id='chart3' style='overflow:auto; background-color:white; height:auto; min- width:381px;;'></div></div>",
+  "<div id='chart1o_scroller' class=''   style='font-size:13px; font-family:helvetica; font-style:normal; font-weight:normal; color:black; border-style:groove;' name=''><div id='chart1o' style='overflow:auto; background-color:white; height:auto; min- width:381px;;'></div></div>",
+  "<div id='chart2o_scroller' class=''   style='font-size:13px; font-family:helvetica; font-style:normal; font-weight:normal; color:black; border-style:groove;' name=''><div id='chart2o' style='overflow:auto; background-color:white; height:auto; min- width:381px;;'></div></div>",
+  "<div id='chart3o_scroller' class=''   style='font-size:13px; font-family:helvetica; font-style:normal; font-weight:normal; color:black; border-style:groove;' name=''><div id='chart3o' style='overflow:auto; background-color:white; height:auto; min- width:381px;;'></div></div>",
+  "<button id='btnOAuth2' class='ui-btn ui-mini  ui-btn-inline ui-icon- ui-btn-icon-none  ' style='margin:0px; overflow:visible;   ' data-nsb-type=Button_jqm>Get Data</button>",
+  "<hr id='Line1b' class='' style='background-color:grigio;border-style:solid;border-color:gray;border-width:1px;' >",
+  "<hr id='Line2b' class='' style='background-color:grigio;border-style:solid;border-color:gray;border-width:1px;' >",
+  "<div id='Label2' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Odata API Call</div>",
+  "<div id='Label2Copy' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Odata API Call</div>",
+  "<div id='Label3' class='' data-nsb-type=Label style='text-align:left; text-shadow:none; font-size:16px;font-family:helvetica;font-style:normal;font-weight:bold;color:black; background-color:trasparente; border-color:transparent; border-width:1px; ' >Light</div>",
+  "<hr id='lineHide' class='' style='background-color:#F9F9F9;border-style:solid;border-color:#F9F9F9;border-width:1px;' >",
+  ].join('');
+</script>
+</form>
+
+</div>
+<script>
+if(!navigator.cookieEnabled) NSB.MsgBox('Please turn cookies on.');
+(function(){var all=document.getElementsByTagName('*');for(var i=0;i<all.length;i++)if(all[i].id!=''&&typeof all[i].id!='undefined'&&typeof window[all[i].id]=='undefined')window[all[i].id]=all[i];})()
+var NSBCurrentForm = frmHome;
+
+window.addEventListener('load', function() {
+  frmHome.style.display = 'block';
+
+  NSB.addProperties(boxPub);
+  NSB.addProperties(boxPriv);
+
+
+  NSB.addProperties(lblTitolo);
+
+
+  NSB.addProperties(lblPub);
+
+
+  NSB.addProperties(lblPriv);
+
+
+  NSB.addProperties(lblUser);
+  if(typeof txtUser==='undefined')txtUser=document.getElementById('txtUser')
+  txtUser.addEventListener('touchmove', function(e) { e.stopPropagation(); }, false);
+  NSB.addProperties(txtUser, $('#txtUser_wrapper > div')[0]);
+  NSB.addDisableProperty(txtUser)
+
+
+  NSB.addProperties(lblPWD);
+  if(typeof txtPWD==='undefined')txtPWD=document.getElementById('txtPWD')
+  txtPWD.addEventListener('touchmove', function(e) { e.stopPropagation(); }, false);
+  NSB.addProperties(txtPWD, $('#txtPWD_wrapper > div')[0]);
+  NSB.addDisableProperty(txtPWD)
+
+
+  NSB.addProperties(lblToken);
+  if(typeof txtToken==='undefined')txtToken=document.getElementById('txtToken')
+  txtToken.addEventListener('touchmove', function(e) { e.stopPropagation(); }, false);
+  NSB.addProperties(txtToken, $('#txtToken_wrapper > div')[0]);
+  NSB.addDisableProperty(txtToken)
+
+
+  NSB.addProperties(lblStream);
+
+
+  NSB.addProperties(lblStream2);
+  if(typeof txtStream1==='undefined')txtStream1=document.getElementById('txtStream1')
+  txtStream1.addEventListener('touchmove', function(e) { e.stopPropagation(); }, false);
+  NSB.addProperties(txtStream1, $('#txtStream1_wrapper > div')[0]);
+  NSB.addDisableProperty(txtStream1)
+  if(typeof txtStream2==='undefined')txtStream2=document.getElementById('txtStream2')
+  txtStream2.addEventListener('touchmove', function(e) { e.stopPropagation(); }, false);
+  NSB.addProperties(txtStream2, $('#txtStream2_wrapper > div')[0]);
+  NSB.addDisableProperty(txtStream2)
+  NSB.addDisableProperty(btnConnect);
+  NSB.addProperties(btnConnect);
+
+  NSB.addDisableProperty(btnConnect2);
+  NSB.addProperties(btnConnect2);
+
+  NSB.addProperties(Line1);
+  NSB.addProperties(Line2);
+  NSB.addProperties(Termometro);
+
+
+  NSB.addProperties(lblTemperatura);
+
+
+  NSB.addProperties(lblTemperatura2);
+  NSB.addProperties(Line3);
+  NSB.addProperties(Termometro2);
+  NSB.addProperties(Line4);
+  NSB.addProperties(lTemp1);
+
+
+  NSB.addProperties(Label1);
+  if(typeof txtServer==='undefined')txtServer=document.getElementById('txtServer')
+  txtServer.addEventListener('touchmove', function(e) { e.stopPropagation(); }, false);
+  NSB.addProperties(txtServer, $('#txtServer_wrapper > div')[0]);
+  NSB.addDisableProperty(txtServer)
+
+
+  NSB.addProperties(lblButton);
+  NSB.addProperties(imgButton);
+  NSB.addProperties(imgIgro);
+
+
+  NSB.addProperties(lblIgro);
+  NSB.addProperties(imgLux);
+
+
+  NSB.addProperties(lLightT);
+  NSB.addProperties(lLum);
+
+
+  NSB.addProperties(lPerc);
+
+
+  NSB.addProperties(lblTS1);
+
+
+  NSB.addProperties(lblTS2);
+  NSB.addProperties(lTemp2);
+  NSB.addProperties(imgIgroCopy);
+
+
+  NSB.addProperties(lblIgro2);
+  NSB.addProperties(imgLux2);
+
+
+  NSB.addProperties(lblLux);
+
+
+  NSB.addProperties(lblMessage);
+  $('#FlipToggle1 .ui-flipswitch').css('margin','0px');
+  FlipToggle1.value=function() {return FlipToggle1_inner.options[FlipToggle1_inner.selectedIndex].innerHTML;}
+  FlipToggle1.setting=function() {return FlipToggle1_inner.options[FlipToggle1_inner.selectedIndex].innerHTML!='Off';}
+  FlipToggle1.setValue=function(n) {$('#FlipToggle1_inner').val(n).flipswitch('refresh'); }
+  NSB.addDisableProperty(FlipToggle1);NSB.addProperties(FlipToggle1);
+  NSB.addDisableProperty(btnOAuth1);
+  NSB.addProperties(btnOAuth1);
+
+  if (false) {chart1_ref = new IScroll(chart1_scroller,{ mouseWheel:true, scrollbars:true, bounce: false, zoom:true,click:iScrollClick()});
+    chart1.refresh=function(){setTimeout(chart1_ref.refresh(),100)}}
+  NSB.addProperties(chart1,chart1_scroller);
+  if (false) {chart2_ref = new IScroll(chart2_scroller,{ mouseWheel:true, scrollbars:true, bounce: false, zoom:true,click:iScrollClick()});
+    chart2.refresh=function(){setTimeout(chart2_ref.refresh(),100)}}
+  NSB.addProperties(chart2,chart2_scroller);
+  if (false) {chart3_ref = new IScroll(chart3_scroller,{ mouseWheel:true, scrollbars:true, bounce: false, zoom:true,click:iScrollClick()});
+    chart3.refresh=function(){setTimeout(chart3_ref.refresh(),100)}}
+  NSB.addProperties(chart3,chart3_scroller);
+  if (false) {chart1o_ref = new IScroll(chart1o_scroller,{ mouseWheel:true, scrollbars:true, bounce: false, zoom:true,click:iScrollClick()});
+    chart1o.refresh=function(){setTimeout(chart1o_ref.refresh(),100)}}
+  NSB.addProperties(chart1o,chart1o_scroller);
+  if (false) {chart2o_ref = new IScroll(chart2o_scroller,{ mouseWheel:true, scrollbars:true, bounce: false, zoom:true,click:iScrollClick()});
+    chart2o.refresh=function(){setTimeout(chart2o_ref.refresh(),100)}}
+  NSB.addProperties(chart2o,chart2o_scroller);
+  if (false) {chart3o_ref = new IScroll(chart3o_scroller,{ mouseWheel:true, scrollbars:true, bounce: false, zoom:true,click:iScrollClick()});
+    chart3o.refresh=function(){setTimeout(chart3o_ref.refresh(),100)}}
+  NSB.addProperties(chart3o,chart3o_scroller);
+  NSB.addDisableProperty(btnOAuth2);
+  NSB.addProperties(btnOAuth2);
+
+  NSB.addProperties(Line1b);
+  NSB.addProperties(Line2b);
+
+
+  NSB.addProperties(Label2);
+
+
+  NSB.addProperties(Label2Copy);
+
+
+  NSB.addProperties(Label3);
+  NSB.addProperties(lineHide);
+  frmHome.style.display = 'none';
+  
+}, false);
+frmHome.onsubmit=function(e){e.stopPropagation();e.preventDefault()};
+NSB.addProperties(frmHome);
+var client;
+var client2;
+
+function Main() {
+  lTemp1.Width = 0;
+  lTemp2.Width = 0;
+  lineHide.Visible = True;
+}
+
+
+btnOAuth1.onclick = function() { var savethefunction_rvar="";
+ var line1,line2,line3,plot1,plot2,plot3,options1,options2,options3,query,ris;
+
+  query = "http://api.smartdatanet.it/odata/SmartDataOdataService.svc/ds_Environment_147/Measures?$orderby=%20time%20desc&$top=60&$format=json";
+var xmlhttp;
+      var post;
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.open('GET', query, false);
+      xmlhttp.send();
+      ris = xmlhttp.responseText;
+      
+obJSON = JSON.parse(ris);
+
+   line1 = [];
+   line2 = [];
+   line3 = [];
+
+   for   (i = 0; i  <= obJSON.d.results.length -1; i ++) {
+       l = obJSON.d.results[i].luminosita;
+       u = obJSON.d.results[i].umidita;
+       t = obJSON.d.results[i].temperatura;
+       line1[i] = [i,Math.floor(l)];
+       line2[i] = [i,Math.floor(t)];
+       line3[i] = [i,Math.floor(u)];
+   }
+
+  options1={}
+  options1.title="Luminosity - Last 60 measures";
+  options1.axes={xaxis: {renderer:$.jqplot.CanvasAxisLabelRenderer}, yaxis:{min: 0}}
+  options1.series=[{showMarker:False},{lineWidth:1}];
+  options2={}
+  options2.title="Temperature - Last 60 measures";
+  options2.axes={xaxis: {renderer:$.jqplot.CanvasAxisLabelRenderer}, yaxis:{min: 0}}
+  options2.series=[{showMarker:False},{lineWidth:1}];
+  options3={}
+  options3.title="Humidity - Last 60 measures";
+  options3.axes={xaxis: {renderer:$.jqplot.CanvasAxisLabelRenderer}, yaxis:{min: 0}}
+  options3.series=[{showMarker:False},{lineWidth:1}];
+
+  plot1 = $.jqplot("chart1" , [line1], options1);
+  plot2 = $.jqplot("chart2" , [line2], options2);
+  plot3 = $.jqplot("chart3" , [line3], options3);
+
+return savethefunction_rvar; }
+
+
+btnOAuth2.onclick = function() { var savethefunction_rvar="";
+   var line1,line2,line3,plot1,plot2,plot3,options1,options2,options3,query,ris;
+
+  query = "https://api.smartdatanet.it:443/api/ds_Environcorre_148/Measures?$orderby=%20time%20desc&$top=60&$format=json";
+  tx = "Bearer " + txtToken.value;
+var xmlhttp2;
+      var post;
+      xmlhttp2=new XMLHttpRequest();
+      xmlhttp2.open('GET', query, false);
+      xmlhttp2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xmlhttp2.setRequestHeader('Authorization', tx);
+      xmlhttp2.send();
+      ris = xmlhttp2.responseText;
+      
+obJSON = JSON.parse(ris);
+
+   line1 = [];
+   line2 = [];
+   line3 = [];
+
+   for   (i = 0; i  <= obJSON.d.results.length -1; i ++) {
+       l = obJSON.d.results[i].luminosita;
+       u = obJSON.d.results[i].umidita;
+       t = obJSON.d.results[i].temperatura;
+       line1[i] = [i,Math.floor(l)];
+       line2[i] = [i,Math.floor(t)];
+       line3[i] = [i,Math.floor(u)];
+   }
+
+  options1={}
+  options1.title="Luminosity - Last 60 measures";
+  options1.axes={xaxis: {renderer:$.jqplot.CanvasAxisLabelRenderer}, yaxis:{min: 0}}
+  options1.series=[{showMarker:False},{lineWidth:1}];
+  options2={}
+  options2.title="Temperature - Last 60 measures";
+  options2.axes={xaxis: {renderer:$.jqplot.CanvasAxisLabelRenderer}, yaxis:{min: 0}}
+  options2.series=[{showMarker:False},{lineWidth:1}];
+  options3={}
+  options3.title="Humidity - Last 60 measures";
+  options3.axes={xaxis: {renderer:$.jqplot.CanvasAxisLabelRenderer}, yaxis:{min: 0}}
+  options3.series=[{showMarker:False},{lineWidth:1}];
+
+  plot1 = $.jqplot("chart1o" , [line1], options1);
+  plot2 = $.jqplot("chart2o" , [line2], options2);
+  plot3 = $.jqplot("chart3o" , [line3], options3);
+return savethefunction_rvar; }
+
+FlipToggle1.onclick = function() { var savethefunction_rvar="";
+    if(FlipToggle1.value() == "On") {
+        lineHide.Visible = False;
+ } else {
+        lineHide.Visible = True;
+    }
+return savethefunction_rvar; }
+
+function calcolaWidthT(x) { var savethefunction_rvar="";
+    savethefunction_rvar  = x * 3;
+return savethefunction_rvar; }
+
+function calcolaWidthL(x) { var savethefunction_rvar="";
+    savethefunction_rvar  = 285 - ((1024 - x) * 0.278);
+return savethefunction_rvar; }
+
+btnConnect.onclick = function() { var savethefunction_rvar="";
+
+    if(btnConnect.value == "Connect") {
+      client = Stomp.client(txtServer.text);
+      client.connect(txtUser.text, txtPWD.text, connectCallBack, errorCallback);
+      btnConnect.value = "Logout";
+ } else {
+      client.disconnect(disconnectCallback);
+      btnConnect.value = "Connect";
+  }
+return savethefunction_rvar; }
+
+function connectCallBack(x) {
+    client.subscribe(txtStream1.text, messageCallback);
+    _msgbox_confirm("Conected");
+}
+
+function disconnectCallback(x) {
+  _msgbox_confirm("Disconnected");
+}
+
+
+function errorCallback(x) {
+  _msgbox_confirm("Connection Error " + x);
+  btnConnect.value = "Connect";
+}
+
+function messageCallback(x) {
+ var jsText;
+ var obJSON;
+ var temperature;
+ var luminosity;
+ var btn;
+ var humidity;
+
+ // remove the stomp header
+  jsText =""  +  x;
+  p =  InStr(jsText, "{");
+  jsText = Mid(jsText, p);
+
+ // convert the JSON to an object
+  obJSON = JSON.parse(jsText);
+
+  lblTS1.Caption = obJSON.values[0].time;
+
+  temperature = obJSON.values[0].components.temperatura;
+  lTemp1.Width = calcolaWidthT(Math.floor(temperature) + 20);
+  lblTemperatura.Caption = "Temperature = " + temperature + " °C";
+
+  btn = obJSON.values[0].components.switch;
+  if(btn == "0") {
+      imgButton.src = "img/luceoff.png";
+ } else {
+      imgButton.src = "img/luceon.png";
+  }
+
+  humidity = obJSON.values[0].components.umidita;
+
+  lblIgro.Caption = humidity + " %";
+
+  luminosity = obJSON.values[0].components.luminosita;
+  l = Math.floor(luminosity);
+  lLum.Width = calcolaWidthL(l);
+  lLum.Left = 85 + (285 - lLum.Width);
+  lPerc.Caption = luminosity;
+
+}
+
+btnConnect2.onclick = function() { var savethefunction_rvar="";
+      if(btnConnect2.value == "Connect") {
+      client2 = Stomp.client(txtServer.text);
+      client2.connect("Bearer " + txtToken.text, "" , connectCallBack2, errorCallback2);
+      btnConnect2.value = "Logout";
+ } else {
+      client2.disconnect(disconnectCallback);
+      btnConnect2.value = "Connect";
+  }
+return savethefunction_rvar; }
+
+function connectCallBack2(x) {
+    client2.subscribe(txtStream2.text, messageCallback2);
+    _msgbox_confirm("Conected");
+}
+
+function disconnectCallback2(x) {
+  _msgbox_confirm("Disconnected");
+}
+
+
+function errorCallback2(x) {
+  _msgbox_confirm("Connection Error " + x);
+  btnConnect.value = "Connect";
+}
+
+function messageCallback2(x) {
+ var jsText;
+ var obJSON;
+ var temperature;
+ var luminosity;
+ var btn;
+ var humidity;
+
+ // remove the stomp header
+  jsText =""  +  x;
+  p =  InStr(jsText, "{");
+  jsText = Mid(jsText, p);
+
+ // convert the JSON to an object
+  obJSON = JSON.parse(jsText);
+
+  lblTS2.Caption = obJSON.values[0].time;
+
+  temperature = obJSON.values[0].components.temperatura;
+  lTemp2.Width = calcolaWidthT(Math.floor(temperature) + 20);
+  lblTemperatura2.Caption = "Temperature = " + temperature + " °C";
+
+   humidity = obJSON.values[0].components.umidita;
+
+  lblIgro2.Caption = humidity + " %";
+
+  luminosity = obJSON.values[0].components.luminosita;
+
+  lblLux.Caption = Math.floor(luminosity) + " %";
+
+}
+
+
+
+// Generated by CoffeeScript 1.3.3
+(function() {
+  var Byte, Client, Frame, Stomp,
+    __hasProp = {}.hasOwnProperty;
+  
+  var MAX_FRAME_SIZE=16*1024;;
+  
+  Byte = {
+    LF: '\x0A',
+    NULL: '\x00'
+  };
+
+  Frame = (function() {
+
+    function Frame(command, headers, body) {
+      this.command = command;
+      this.headers = headers != null ? headers : {};
+      this.body = body != null ? body : '';
+    }
+
+    Frame.prototype.toString = function() {
+      var lines, name, value, _ref;
+      lines = [this.command];
+      _ref = this.headers;
+      for (name in _ref) {
+        if (!__hasProp.call(_ref, name)) continue;
+        value = _ref[name];
+        lines.push("" + name + ":" + value);
+      }
+      if (this.body) {
+        lines.push("content-length:" + ('' + this.body).length);
+      }
+      lines.push(Byte.LF + this.body);
+      return lines.join(Byte.LF);
+    };
+
+    Frame._unmarshallSingle = function(data) {
+      var body, chr, command, divider, headerLines, headers, i, idx, len, line, start, trim, _i, _j, _ref, _ref1;
+      divider = data.search(RegExp("" + Byte.LF + Byte.LF));
+      headerLines = data.substring(0, divider).split(Byte.LF);
+      command = headerLines.shift();
+      headers = {};
+      trim = function(str) {
+        return str.replace(/^\s+|\s+$/g, '');
+      };
+      line = idx = null;
+      for (i = _i = 0, _ref = headerLines.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        line = headerLines[i];
+        idx = line.indexOf(':');
+        headers[trim(line.substring(0, idx))] = trim(line.substring(idx + 1));
+      }
+      body = '';
+      start = divider + 2;
+      if (headers['content-length']) {
+        len = parseInt(headers['content-length']);
+        body = ('' + data).substring(start, start + len);
+      } else {
+        chr = null;
+        for (i = _j = start, _ref1 = data.length; start <= _ref1 ? _j < _ref1 : _j > _ref1; i = start <= _ref1 ? ++_j : --_j) {
+          chr = data.charAt(i);
+          if (chr === Byte.NULL) {
+            break;
+          }
+          body += chr;
+        }
+      }
+      return new Frame(command, headers, body);
+    };
+
+    Frame.unmarshall = function(datas) {
+      var data;
+      return (function() {
+        var _i, _len, _ref, _results;
+        _ref = datas.split(RegExp("" + Byte.NULL + Byte.LF + "*"));
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          data = _ref[_i];
+          if ((data != null ? data.length : void 0) > 0) {
+            _results.push(Frame._unmarshallSingle(data));
+          }
+        }
+        return _results;
+      })();
+    };
+
+    Frame.marshall = function(command, headers, body) {
+      var frame;
+      frame = new Frame(command, headers, body);
+      return frame.toString() + Byte.NULL;
+    };
+
+    return Frame;
+
+  })();
+
+  Client = (function() {
+
+    function Client(ws) {
+      this.ws = ws;
+      this.ws.binaryType = "arraybuffer";
+      this.counter = 0;
+      this.connected = false;
+      this.heartbeat = {
+        outgoing: 10000,
+        incoming: 10000
+      };
+      this.subscriptions = {};
+    }
+
+    Client.prototype._transmit = function(command, headers, body) {
+      var out;
+      out = Frame.marshall(command, headers, body);
+      if (typeof this.debug === "function") {
+        this.debug(">>> " + out);
+      }
+      while( true) {
+        if( out.length > MAX_FRAME_SIZE ) {
+          this.ws.send(out.substring(0, MAX_FRAME_SIZE));
+          out = out.substring(MAX_FRAME_SIZE);
+        } else {
+          return this.ws.send(out);
+        }
+      }
+    };
+
+    Client.prototype._setupHeartbeat = function(headers) {
+      var serverIncoming, serverOutgoing, ttl, v, _ref, _ref1,
+        _this = this;
+      if ((_ref = headers.version) !== Stomp.VERSIONS.V1_1 && _ref !== Stomp.VERSIONS.V1_2) {
+        return;
+      }
+      _ref1 = (function() {
+        var _i, _len, _ref1, _results;
+        _ref1 = headers['heart-beat'].split(",");
+        _results = [];
+        for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+          v = _ref1[_i];
+          _results.push(parseInt(v));
+        }
+        return _results;
+      })(), serverOutgoing = _ref1[0], serverIncoming = _ref1[1];
+      if (!(this.heartbeat.outgoing === 0 || serverIncoming === 0)) {
+        ttl = Math.max(this.heartbeat.outgoing, serverIncoming);
+        if (typeof this.debug === "function") {
+          this.debug("send PING every " + ttl + "ms");
+        }
+        this.pinger = typeof window !== "undefined" && window !== null ? window.setInterval(function() {
+          _this.ws.send(Byte.LF);
+          return typeof _this.debug === "function" ? _this.debug(">>> PING") : void 0;
+        }, ttl) : void 0;
+      }
+      if (!(this.heartbeat.incoming === 0 || serverOutgoing === 0)) {
+        ttl = Math.max(this.heartbeat.incoming, serverOutgoing);
+        if (typeof this.debug === "function") {
+          this.debug("check PONG every " + ttl + "ms");
+        }
+        return this.ponger = typeof window !== "undefined" && window !== null ? window.setInterval(function() {
+          var delta;
+          delta = Date.now() - _this.serverActivity;
+          if (delta > ttl * 2) {
+            if (typeof _this.debug === "function") {
+              _this.debug("did not receive server activity for the last " + delta + "ms");
+            }
+            return _this._cleanUp();
+          }
+        }, ttl) : void 0;
+      }
+    };
+
+    Client.prototype.connect = function(login, passcode, connectCallback, errorCallback, vhost) {
+      var _this = this;
+      this.connectCallback = connectCallback;
+      if (typeof this.debug === "function") {
+        this.debug("Opening Web Socket...");
+      }
+      this.ws.onmessage = function(evt) {
+        var arr, c, data, frame, onreceive, _i, _len, _ref, _results;
+        data = typeof ArrayBuffer !== 'undefined' && evt.data instanceof ArrayBuffer ? (arr = new Uint8Array(evt.data), typeof _this.debug === "function" ? _this.debug("--- got data length: " + arr.length) : void 0, ((function() {
+          var _i, _len, _results;
+          _results = [];
+          for (_i = 0, _len = arr.length; _i < _len; _i++) {
+            c = arr[_i];
+            _results.push(String.fromCharCode(c));
+          }
+          return _results;
+        })()).join('')) : evt.data;
+        _this.serverActivity = Date.now();
+        if (data === Byte.LF) {
+          if (typeof _this.debug === "function") {
+            _this.debug("<<< PONG");
+          }
+          return;
+        }
+        if (typeof _this.debug === "function") {
+          _this.debug("<<< " + data);
+        }
+        _ref = Frame.unmarshall(data);
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          frame = _ref[_i];
+          switch (frame.command) {
+            case "CONNECTED":
+              if (typeof _this.debug === "function") {
+                _this.debug("connected to server " + frame.headers.server);
+              }
+              _this.connected = true;
+              _this._setupHeartbeat(frame.headers);
+              _results.push(typeof _this.connectCallback === "function" ? _this.connectCallback(frame) : void 0);
+              break;
+            case "MESSAGE":
+              onreceive = _this.subscriptions[frame.headers.subscription];
+              _results.push(typeof onreceive === "function" ? onreceive(frame) : void 0);
+              break;
+            case "RECEIPT":
+              _results.push(typeof _this.onreceipt === "function" ? _this.onreceipt(frame) : void 0);
+              break;
+            case "ERROR":
+              _results.push(typeof errorCallback === "function" ? errorCallback(frame) : void 0);
+              break;
+            default:
+              _results.push(typeof _this.debug === "function" ? _this.debug("Unhandled frame: " + frame) : void 0);
+          }
+        }
+        return _results;
+      };
+      this.ws.onclose = function() {
+        var msg;
+        msg = "Whoops! Lost connection to " + _this.ws.url;
+        if (typeof _this.debug === "function") {
+          _this.debug(msg);
+        }
+        return typeof errorCallback === "function" ? errorCallback(msg) : void 0;
+      };
+      return this.ws.onopen = function() {
+        var headers;
+        if (typeof _this.debug === "function") {
+          _this.debug('Web Socket Opened...');
+        }
+        headers = {
+          "accept-version": Stomp.VERSIONS.supportedVersions(),
+          "heart-beat": [_this.heartbeat.outgoing, _this.heartbeat.incoming].join(',')
+        };
+        if (vhost) {
+          headers.host = vhost;
+        }
+        if (login) {
+          headers.login = login;
+        }
+        if (passcode) {
+          headers.passcode = passcode;
+        }
+        return _this._transmit("CONNECT", headers);
+      };
+    };
+
+    Client.prototype.disconnect = function(disconnectCallback) {
+      this._transmit("DISCONNECT");
+      this.ws.onclose = null;
+      this._cleanUp();
+      return typeof disconnectCallback === "function" ? disconnectCallback() : void 0;
+    };
+
+    Client.prototype._cleanUp = function() {
+      this.ws.close();
+      this.connected = false;
+      if (this.pinger) {
+        if (typeof window !== "undefined" && window !== null) {
+          window.clearInterval(this.pinger);
+        }
+      }
+      if (this.ponger) {
+        return typeof window !== "undefined" && window !== null ? window.clearInterval(this.ponger) : void 0;
+      }
+    };
+
+    Client.prototype.send = function(destination, headers, body) {
+      if (headers == null) {
+        headers = {};
+      }
+      if (body == null) {
+        body = '';
+      }
+      headers.destination = destination;
+      return this._transmit("SEND", headers, body);
+    };
+
+    Client.prototype.subscribe = function(destination, callback, headers) {
+      if (headers == null) {
+        headers = {};
+      }
+      if (!headers.id) {
+        headers.id = "sub-" + this.counter++;
+      }
+      headers.destination = destination;
+      this.subscriptions[headers.id] = callback;
+      this._transmit("SUBSCRIBE", headers);
+      return headers.id;
+    };
+
+    Client.prototype.unsubscribe = function(id) {
+      delete this.subscriptions[id];
+      return this._transmit("UNSUBSCRIBE", {
+        id: id
+      });
+    };
+
+    Client.prototype.begin = function(transaction) {
+      return this._transmit("BEGIN", {
+        transaction: transaction
+      });
+    };
+
+    Client.prototype.commit = function(transaction) {
+      return this._transmit("COMMIT", {
+        transaction: transaction
+      });
+    };
+
+    Client.prototype.abort = function(transaction) {
+      return this._transmit("ABORT", {
+        transaction: transaction
+      });
+    };
+
+    Client.prototype.ack = function(messageID, subscription, headers) {
+      if (headers == null) {
+        headers = {};
+      }
+      headers["message-id"] = messageID;
+      headers.subscription = subscription;
+      return this._transmit("ACK", headers);
+    };
+
+    Client.prototype.nack = function(messageID, subscription, headers) {
+      if (headers == null) {
+        headers = {};
+      }
+      headers["message-id"] = messageID;
+      headers.subscription = subscription;
+      return this._transmit("NACK", headers);
+    };
+
+    return Client;
+
+  })();
+
+  Stomp = {
+    libVersion: "2.0.0-next",
+    VERSIONS: {
+      V1_0: '1.0',
+      V1_1: '1.1',
+      V1_2: '1.2',
+      supportedVersions: function() {
+        return '1.1,1.0';
+      }
+    },
+    client: function(url, protocols) {
+      var klass, ws;
+      if (protocols == null) {
+        protocols = ['v10.stomp', 'v11.stomp'];
+      }
+      klass = Stomp.WebSocketClass || WebSocket;
+      ws = new klass(url, protocols);
+      return new Client(ws);
+    },
+    over: function(ws) {
+      return new Client(ws);
+    },
+    Frame: Frame
+  };
+
+  if (typeof window !== "undefined" && window !== null) {
+    window.Stomp = Stomp;
+  } else {
+    exports.Stomp = Stomp;
+    Stomp.WebSocketClass = require('./test/server.mock.js').StompServerMock;
+  }
+
+}).call(this);
+
+window.addEventListener('orientationchange', function(){window.scrollTo(0,0)});
+window.addEventListener('load', function() {
+  browserWarningMessage('Please use Google Chrome, Apple Safari or another supported browser.');
+  frmHome.style.display = 'block';
+  Main();
+  if (typeof(frmHome.onshow)=='function') frmHome.onshow();
+  
+}, false);
+
+
+</script>
+
+</body>
+</html>
