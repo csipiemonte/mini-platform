@@ -4,7 +4,7 @@ This folder contains a first version of  Arduino YUN Demo application for YUCCA.
 
 For build the sensor use this schema:
 
-[ ![Sensor schema][1]](https://raw.githubusercontent.com/csipiemonte/unit-test-mini-platform/master/Demo/Arduino%20YUN/demoArduino.png)
+![Sensor schema](demoArduino.png)
 
 In this folder:
 
