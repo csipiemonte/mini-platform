@@ -1,4 +1,4 @@
-UNIT TEST MINI PLATFORM
+MINI PLATFORM for local testing
 =========================
 This folder contains a set of tools and examples of "how to use YUCCA"
 
