@@ -1,4 +1,4 @@
-Aruino YUN demo for YUCCA
+Arduino YUN demo for YUCCA
 =========================
 This folder contains a first version of  Arduino YUN Demo application for YUCCA. That implement a sensor of temperature, luminosity and humidity.
 

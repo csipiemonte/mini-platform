@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Client Stomp</title>
+<script src="js/stomp.js"></script>
+</head>
+<body>
+
+<div id="myDiv"><h2>Sottoscrizione web socket</h2></div>
+
+<script>
+
+var urlServer;
+var topics;
+
+urlServer = "ws://localhost:61614"; 
+topics = "/topic/output.sandbox.miostream";
+client = Stomp.client(urlServer);
+client.connect("guest" , "pasword" , connectCallBack, errorCallback);
+
+function connectCallBack(x) {
+     alert("connesso")
+     client.subscribe(topics, messageCallback);
+}
+
+function errorCallback(x) {
+ alert("errore durante la connessione");
+}
+
+function messageCallback(x) {
+	// gestione del messaggio di inviato dalla piattaforma
+	document.getElementById('myDiv').innerHTML=x
+}
+
+
+</script
+
+</body>
+</html>
